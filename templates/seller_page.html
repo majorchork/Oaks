@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/seller-signup.css">
+    <title>SELLER PAGE</title>
+</head>
+<body>
+<h1 class="shopfront-title"><span>W E L C O M E</span> <br>Back {.SellerName} </h1>
+<div class="container-seller">
+
+    <div class="seller-form">
+
+        <h2>SELLER PUBLISH PRODUCT</h2>
+
+        <form action="/submitData" method="POST">
+
+            <label for="myfile">Select an Image:</label>
+            <input type="file" id="myfile" name="myfile">
+
+            <div><input type="text" name="product-Name" placeholder="Product Name"></div>
+            <div><input type="number" name="product-quanity-left"  placeholder="Quantity of Product Left"></div>
+            <div><input type="text" name="product-price"  placeholder="Product Price"></div>
+            <div><select>
+                <option value="0">Select Product:</option>
+                <option value="1">Casual Men's Wear</option>
+                <option value="2">Active Men's Wear</option>
+                <option value="2">Formal Men's Wear</option>
+            </select>
+            </div>
+            <input type="submit" value="POST BLOG" class="continue-btn">
+        </form>
+
+    </div>
+<div class="edit-product">
+    {{range $ind, $val := .}}
+    <div>
+        <h1>{{ $ind }} . {{ .Image}}</h1>
+        <p>{{.product-Name}}</p>
+        <p>{{ .product-price}}</p>
+        <p>{{ .product-quanity-left}}</p>
+        <p>{{ .product-category}}</p>
+        <hr>
+
+            <ul class="icon-functions">
+                <li style="list-style-type: none;"><a  class="thebutton delete-product" href="/viewPost/?Personid={{ .ID }}"> View Post</a></li>
+                <li style="list-style-type: none;"><a class="thebutton delete-product" href="/deletePost/?Personid={{ .ID }}">Delete Post</a></li>
+                <li style="list-style-type: none;"><a class="thebutton delete-product" href="/editPost/?Personid={{ .ID }}">Edit Post</a></li>
+            </ul>
+    </div>
+    {{end}}
+
+</div>
+    
+    <!-- <div class="seller-edit-product">
+<h2>SELLER OPERATIONS</h2>
+<div><a href="" class="thebutton edit-product">Edit Product</a></div>
+<div><a href="" class="thebutton delete-product">Delete Product</a></div>
+<div><a href="" class="thebutton edit-product">View Product</a></div>
+    </div> -->
+</div>
+
+</body>
+</html>
