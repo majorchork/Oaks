@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/seller-signup.css">
+    <link rel="stylesheet" href="static/css/seller-signup.css">
     <title>SELLER PAGE</title>
 </head>
 <body>
@@ -21,13 +21,13 @@
             <input type="file" id="myfile" name="myfile">
 
             <div><input type="text" name="product-Name" placeholder="Product Name"></div>
-            <div><input type="number" name="product-quanity-left"  placeholder="Quantity of Product Left"></div>
+            <div><input type="number" name="product-quantity-left"  placeholder="Quantity of Product Left"></div>
             <div><input type="text" name="product-price"  placeholder="Product Price"></div>
             <div><select>
                 <option value="0">Select Product:</option>
                 <option value="1">Casual Men's Wear</option>
                 <option value="2">Active Men's Wear</option>
-                <option value="2">Formal Men's Wear</option>
+                <option value="3">Formal Men's Wear</option>
             </select>
             </div>
             <input type="submit" value="POST BLOG" class="continue-btn">
@@ -40,7 +40,7 @@
         <h1>{{ $ind }} . {{ .Image}}</h1>
         <p>{{.product-Name}}</p>
         <p>{{ .product-price}}</p>
-        <p>{{ .product-quanity-left}}</p>
+        <p>{{ .product-quantity-left}}</p>
         <p>{{ .product-category}}</p>
         <hr>
 

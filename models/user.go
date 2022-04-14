@@ -1,16 +1,18 @@
 package models
 
-import "time"
+import (
+	"github.com/jinzhu/gorm"
+)
 
 type User struct {
-	UserID       uint      `json:"userID" gorm:"primarykey, autoincrement"` // for storage
-	Name         string    `json:"name" gorm:"name"`
-	Email        string    `json:"email" gorm:"email"`
-	Username     string    `json:"Username" gorm:"Username"`
-	Password     string    `json:"password,omitempty" gorm:"-"`
-	PasswordHash string    `json:"-" gorm:"password-hash"`
-	Address      string    `json:"address" gorm:"address"`
-	TimeCreated  time.Time `json:"timeCreated" gorm:"timeCreated"`
+	gorm.Model
+	//UserID       uint   `json:"userID" gorm:"primarykey, autoincrement"` // for storage
+	Name         string `json:"name" gorm:"name"`
+	Email        string `json:"email" gorm:"email"`
+	Username     string `json:"Username" gorm:"Username"`
+	Password     string `json:"password,omitempty" gorm:"-"`
+	PasswordHash string `json:"-" gorm:"password-hash"`
+	Address      string `json:"address" gorm:"address"`
 }
 
 /*

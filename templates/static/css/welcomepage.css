@@ -5,7 +5,7 @@
 }
 
 body{
-    background-image: url("/templates/images/Create-eCommerce-Websites.webp");
+    background-image: url("/static/images/Create-eCommerce-Websites.webp");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;

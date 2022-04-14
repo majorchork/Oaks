@@ -3,12 +3,17 @@ package routes
 import (
 	"github.com/decadevs/next_store/handlers"
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"os"
 )
 
 func CallRoutes(port string) {
-	//create a new gin router
+	//set route as default one made by Gin
 	router := gin.Default()
+
+	//sever all the HTML template quickly as soon as the pages load
+	router.StaticFS("static", http.Dir("./templates/static"))
+	router.LoadHTMLGlob("templates/index.html")
 
 	//define a single homepage endpoint
 	router.GET("/", handlers.Welcomepage)
