@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/css/seller-signup.css">
+    <link rel="stylesheet" href="/static/css/seller-signup.css">
     <title>SELLER PAGE</title>
 </head>
 <body>
-<h1 class="shopfront-title"><span>W E L C O M E</span> <br>Back {.SellerName} </h1>
+<h1 class="shopfront-title"><span>W E L C O M E</span> <br>Back {.Name} </h1>
 <div class="container-seller">
 
     <div class="seller-form">
@@ -17,9 +17,9 @@
 
         <form action="/submitData" method="POST">
 
-            <label for="myfile">Select an Image:</label>
-            <input type="file" id="myfile" name="myfile">
 
+<!--            <input type="file" id="myfile" name="myfile">-->
+            <div><input type="text" name="product-image" placeholder="Place image link"></div>
             <div><input type="text" name="product-Name" placeholder="Product Name"></div>
             <div><input type="number" name="product-quantity-left"  placeholder="Quantity of Product Left"></div>
             <div><input type="text" name="product-price"  placeholder="Product Price"></div>
@@ -34,14 +34,16 @@
         </form>
 
     </div>
-<div class="edit-product">
-    {{range $ind, $val := .}}
+
+    <div class="edit-product">
+    {{range $ind, $val := .Product}}
     <div>
-        <h1>{{ $ind }} . {{ .Image}}</h1>
-        <p>{{.product-Name}}</p>
-        <p>{{ .product-price}}</p>
-        <p>{{ .product-quantity-left}}</p>
-        <p>{{ .product-category}}</p>
+        <h1>{{ .Image}}</h1>
+        <p>{{ .Name}}</p>
+        <p>{{ .Price}}</p>
+        <p>{{ .Quantity}}</p>
+        <p>{{ .ProductCategory}}</p>
+        <p>{{ .Description}}</p>
         <hr>
 
             <ul class="icon-functions">
@@ -51,15 +53,13 @@
             </ul>
     </div>
     {{end}}
-
+        <div class="button-div">
+            <button class="page-btn"><a href="/marketplace">Market Place</a></button>
+            <button class="page-btn"><a href="/">Home Page</a></button>
+        </div>
 </div>
     
-    <!-- <div class="seller-edit-product">
-<h2>SELLER OPERATIONS</h2>
-<div><a href="" class="thebutton edit-product">Edit Product</a></div>
-<div><a href="" class="thebutton delete-product">Delete Product</a></div>
-<div><a href="" class="thebutton edit-product">View Product</a></div>
-    </div> -->
+
 </div>
 
 </body>

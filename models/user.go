@@ -1,12 +1,7 @@
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-)
-
 type User struct {
-	gorm.Model
-	//UserID       uint   `json:"userID" gorm:"primarykey, autoincrement"` // for storage
+	ID           uint   `json:"ID" gorm:"autoincrement"` // for storage
 	Name         string `json:"name" gorm:"name"`
 	Email        string `json:"email" gorm:"email"`
 	Username     string `json:"Username" gorm:"Username"`
@@ -15,15 +10,15 @@ type User struct {
 	Address      string `json:"address" gorm:"address"`
 }
 
-/*
-
- */
 type Buyer struct {
 	User
-	BuyerId uint `json:"buyer_id" gorm:"primarykey, autoincrement"` // for purchases
+	UserID  uint //this is the foreignkey
+	BuyerID uint `json:"buyerID" gorm:"primarykey, autoincrement"`
 }
+
 type Seller struct {
 	User
-	SellerId uint `json:"seller_id" gorm:"primarykey, autoincrement"` // for purchases
-	product  []Product
+	UserID   uint      `gorm:"foreignkey"`
+	SellerID uint      `json:"sellerID" gorm:"SellerID"`
+	Product  []Product `json:"product" gorm:"product"`
 }

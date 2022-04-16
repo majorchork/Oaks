@@ -32,15 +32,7 @@ li{
     padding: 20px;
 }
 
-/* a{
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    font-size: 18px;
-    border-radius: 6px 6px;
-    color: #000;
-    font-weight: bold;
-} */
+
 
 .search{
     width: 30vw;
@@ -62,7 +54,6 @@ margin-top: 15px;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-    /* background-color: rgb(221, 169, 26); */
     background-color: rgb(36, 32, 22);
     border-radius: 5px;
    
@@ -184,7 +175,6 @@ margin-top: 15px;
 
 
 /* Mobile */
-
 @media only screen and (max-width: 600px){
     .main-nav{
         font-size: 0.5rem;

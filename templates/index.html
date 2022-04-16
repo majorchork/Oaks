@@ -6,17 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Anek+Odia&family=Dancing+Script:wght@500&family=Titillium+Web:wght@200;300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/welcomepage.css">
-    <title>Next-Store</title>
+    <title>{{ .title}}</title>
 </head>
 <body>
+
+
 <div class="container">
     <!-- Start Navigation -->
     <div class="welcome-body">
         <nav class="navigation">
             <ul>
-                <li><a href="seller-signup.html" class="seller-sign-in">Seller Sign In</a> </li>
-                <li><a href="buyer-signup.html" class="buyer-sign-in">Buyer Sign up</a></li>
-                <li><a href="market_place.html">Market Place</a></li>
+                <li><a href="sellersignup" class="seller-sign-in">Seller Sign In</a> </li>
+                <li><a href="/buyerssignup" class="buyer-sign-in">Buyer Sign up</a></li>
+                <li><a href="/marketplace">Market Place</a></li>
             </ul>
         </nav>
         <!-- End Navigation -->
@@ -27,7 +29,7 @@
             <p>Purchasing male outfit at the snap of a finger.....</p>
             <p>Purchasing male outfit at the snap of a finger.....</p>
             <p>NEW CUSTOMER GETS 10% DISCOUNT</p>
-            <button><a href="templates/market_place.html">Shop Now!</a></button>
+            <button><a href="/marketplace">Shop Now!</a></button>
         </div>
         <!-- End body -->
     </div>

@@ -1,11 +1,15 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/jinzhu/gorm"
+)
 
 type Product struct {
 	gorm.Model
-	Name            string `json:"name" gorm:"name"`
-	Price           int    `json:"price" gorm:"price"`
-	Quantity        int    `json:"quantity" gorm:"quantity"`
-	ProductCategory string `json:"product_category" gorm:"product_category"`
+	Name        string `json:"name" gorm:"name"`
+	Price       int    `json:"price" gorm:"price"`
+	Quantity    int    `json:"quantity" gorm:"quantity"`
+	Description string `json:"description" gorm:"description"`
+	Image       string `json:"image" gorm:"Image"`
 }
