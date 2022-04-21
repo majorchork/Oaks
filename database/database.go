@@ -6,65 +6,121 @@ import (
 	_ "github.com/decadevs/next_store/models"
 	"github.com/jinzhu/gorm"
 	"log"
+	"os"
 	"time"
 )
 
-func DB() *gorm.DB {
+//DECLARE A VARIABLE THAT CONNECTS WITH DB
+var DBClient *gorm.DB
 
-	const username = ""
-	const password = ""
-	const dbname = ""
+//FUNCTION TO OPEN AND MIGRATE
+func OpenAndMigrateDb() (*gorm.DB, error) {
 
-	//Database connection
+	//storing values from .env file into the variables
+	var username = os.Getenv("DB_USERNAME")
+	var password = os.Getenv("DB_PASSWORD")
+	var dbname = os.Getenv("DB_NAME")
+
+	//open Database and connect using user details
 	db, err := gorm.Open("mysql", username+":"+password+"@tcp(127.0.0.1:3306)/"+dbname+"?charset=utf8mb4&parseTime=True&loc=Local")
 	//error handling
 	if err != nil {
 		log.Println("checking database error", err)
 	}
-	defer db.Close()
 
+	DBClient = db
+
+	//calling the automigrate function
 	AutoMigrate(db)
-	log.Println("got here")
-	return db
+
+	return DBClient, nil
 
 }
 
-//GORM AUTO-MIGRATION OF DATABASE
+//FUNCTION FOR AUTOMIGRATION USING GORM
 func AutoMigrate(db *gorm.DB) {
+
 	err := db.AutoMigrate(&models.User{},
 		&models.Buyer{},
 		&models.Order{},
 		&models.Product{},
 		&models.Status{},
-		&models.Seller{})
+		&models.Seller{},
+		&models.Cart{},
+	)
 
 	log.Println("checking database error", err)
 }
 
+//FUNCTION TO CHECK THE DB & FIND USERS BY THEIR EMAIL ADDRESS
+func FindUserByEmail(email string) (*models.User, error) {
+	user := &models.User{}
+	var err = DBClient.Where("email = ?", email).First(user).Error
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
+}
+
+//FUNCTION TO FIND USER ID BY EMAIL
+func FindUserIdByEmail(email string) (uint, error) {
+	user := &models.User{}
+	var err = DBClient.Where("email = ?", email).First(user).Error
+	log.Println("second line")
+	if err != nil {
+		return 0, err
+	}
+	return user.ID, nil
+}
+
+//FUNCTION TO FIND SELLER BY EMAIL
+func FindSellerByEmail(email string) (*models.Seller, error) {
+	seller := &models.Seller{}
+	// querying the db for seller by email
+	var err = DBClient.Where("email = ?", email).First(seller).Error
+	if err != nil {
+		return nil, err
+	}
+	return seller, nil
+}
+
+//FUNCTION TO CREATE NEW USER
+func CreateNewUser(user *models.User) error {
+	err := DBClient.Create(user).Error
+	return err
+}
+
 //CREATE A IN-MEMORY SELLER DATABASE-RECORD
 func SellerDB() *gorm.DB {
-
-	//open database connection
-	const username = ""
-	const password = ""
-	const dbname = ""
-
-	//Database connection
-	db, err := gorm.Open("mysql", username+":"+password+"@tcp(127.0.0.1:3306)/"+dbname+"?charset=utf8mb4&parseTime=True&loc=Local")
+	db, err := OpenAndMigrateDb()
 	//error handling
 	if err != nil {
 		log.Println("checking database error", err)
 	}
-	defer db.Close()
+	//defer db.Close()
 
-	currentTime := time.Now()
-	Model := gorm.Model{ID: 1, CreatedAt: currentTime, UpdatedAt: currentTime, DeletedAt: nil}
-	var Product = []models.Product{{Model, "Golang Squard10 Polo", 6000, 10, "Nice Polo Outfit", "https://www.google.com/url?sa=i&url=https%3A%2F%2Fjiji.ng%2Fajah%2Fclothing%2Ft-shirt-and-cap-print-branding-oVVMEnC1mBFSzgFoMhPoYd5R.html&psig=AOvVaw19zEvHw76sOOwj0T8hLpRO&ust=1650138377657000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCIi5ttnqlvcCFQAAAAAdAAAAABAD"}}
+	//Seller details
+	UserOne := models.User{
+		ID:            1,
+		Name:          os.Getenv("SELLER_NAME"),
+		Email:         os.Getenv("SELLER_EMAIL"),
+		Username:      os.Getenv("SELLER_USERNAME"),
+		Password:      os.Getenv("SELLER_PASSWORD"),
+		Address:       os.Getenv("SELLER_ADDRESS"),
+		AccountName:   os.Getenv("SELLER_ACCOUNTNAME"),
+		AccountNumber: os.Getenv("SELLER_ACCOUNT_NUMBER"),
+		Phonenumber:   os.Getenv("SELLER_PHONENUMBER"),
+		BankName:      os.Getenv("SELLER_BANKNAME"),
+		PasswordHash:  "",
+		TimeCreated:   time.Now().Format("20-02-2021, 23:12"),
+	}
+	UserOne.PasswordHash = UserOne.PasswordHasher()
 
-	//CREATE
+	//CREATE SELLER
 	var Seller = models.Seller{
-		models.User{1, "Golang-SQ10-Ecommerce", "sq10golang@gmail.com", "ProductOwner", "12345", "12345", "Edo Tech Park"}, 1, 1,
-		Product}
+		UserOne,
+		1,
+	}
 
 	result := db.Create(&Seller)
 	err = result.Error

@@ -5,37 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/buyer-signup.css">
+    <link rel="icon" href="/static/images/png-transparent-retail-computer-icons-e-commerce-sales-mega-offer-miscellaneous-service-logo.png" type="image/x-icon">
     <title>Buyer Page</title>
 </head>
 <body>
-    <div class="container-buyer">
-        <h1 class="buyer-title">BUYER'S CART</h1>
-        <div class="child-container">
-            <div class="buyer-cart">VIEW PRODUCT</div>
-            <div class="buyer-functions">
-                <!-- Start seller operation -->
-                <div class="second-child-container">
-                    <h2>BUYER'S OPERATIONS</h2>
-                    <div><a href="" class="thebutton edit-product">Return Product</a></div>
-                    <div><a href="" class="thebutton delete-product">Remove From Cart</a></div>
-                    <div><a href="" class="thebutton edit-product">Pay Now</a></div>
-                    <!-- Start seller operation -->
-                                    <div class="buyer-gohome">
-                                    <button class="btn"><a href="/marketplace">Market Place</a></button>
-                                    <button class="btn"><a href="/">Home Page</a></button>
-                                    </div>
+<style>
+    .cart-details {
+        width: 60%;
+        height: auto;
+        background-color: #fff;
+        color: #000000;
+        border: 2px solid #000000;
+    }
+</style>
+<div class="container-buyer">
+    <div class="buyer-gohome">
+        <h2>BUYER'S CART</h2>
 
 
+        <button type="submit" class="thebutton edit-product" id="start-payment-button" style="height: 75px">
+            <a href="/buyer/accountdetails">CHECK OUT </a></button>
 
-                </div>
-
-            </div>
-            
-        </div>
-       
-        
+        <button class="btn"><a href="/sellers/launchproduct">Market Place</a></button>
+        <button class="btn"><a href="/">Home Page</a></button>
     </div>
-    
-    
+
+    <div class="cart-details">
+        {{ range $ind, $val := .products}}
+        <div>
+            <h1 style="text-align: center">ITEMS ORDERED</h1>
+            <img src={{$val.Productimg}} alt="Decagon Polo">
+            <p style="color: #000">Product Name : {{ $val.Name }}</p>
+            <h3 class="item-ordered">Price : N{{ $val.Price }}</h3>
+            <h3 class="item-ordered">Quantity Ordered:{{ $val.Quantity}}</h3>
+            <ul style="list-style-type: none">
+                <li><a href="" class="thebutton delete-product">Remove From Cart</a></li>
+                <hr>
+            </ul>
+        </div>
+        {{end}}
+    </div>
+
+
+</div>
+
 </body>
 </html>
+
+

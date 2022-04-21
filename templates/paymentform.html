@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Odia&family=Dancing+Script:wght@500&family=Titillium+Web:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/buyer-signup.css">
+    <link rel="icon" href="/static/images/png-transparent-retail-computer-icons-e-commerce-sales-mega-offer-miscellaneous-service-logo.png" type="image/x-icon">
+    <title>Next CUSTOMER</title>
+</head>
+<body>
+<div class="container">
+
+    <!-- Start body -->
+    <div class="shopfront-div">
+        <h1 class="shopfront-title">N E X T - S T O R E</h1>
+
+
+
+        <!-- START BUYER LOGIN FORM -->
+        <div class="buyer-login-form">
+            <form action="https://checkout.flutterwave.com/v3/hosted/pay" method="POST">
+                <div class="sign-up">
+                    <h1 class="sign-in">PAYMENT DETAILS</h1>
+                </div>
+                <div><h1>Total Price:  ₦5,000</h1></div>
+                <input type="hidden" name="public_key" value="FLWPUBK_TEST-SANDBOXDEMOKEY-X" />
+                <input type="text" name="customer[email]" value="" />
+                <input type="text" name="customer[name]" value="Jesse Pinkman" />
+                <input type="hidden" name="tx_ref" value="bitethtx-019203" />
+                <input type="text" name="amount" />
+                <input type="hidden" name="currency" value="NGN" />
+                <input type="hidden" name="meta[token]" value="54" />
+                <input type="hidden" name="redirect_url" value="https//localhost:8084/sellers/launchproduct">
+
+
+                <div class="btn-div">
+                    <button class="submit-btn" type="submit" id="start-payment-button"><a href="">MAKE PAYMENT</a></button>
+                </div>
+            </form>
+
+        </div>
+        <!-- END SELLER LOGIN FORM -->
+
+        <div class="button-div">
+            <button class="page-btn"><a href="/sellers/launchproduct">Market Place</a></button>
+            <button class="page-btn"><a href="/">Home Page</a></button>
+        </div>
+    </div>
+    <!-- End body -->
+
+
+</div>
+
+</body>
+</html>

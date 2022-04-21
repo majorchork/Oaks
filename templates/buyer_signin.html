@@ -14,13 +14,9 @@
     <h1 class="shopfront-title" style="margin-top: 0px">N E X T - S T O R E</h1>
     <!-- Start body -->
     <div class="shopfront-div" style="display: flex; flex-direction: row; width: 90%; height: 90vh; margin-top: -130px;">
-
-
         <!-- <span>THANK YOU FOR SHOPING AT</span> -->
         <!-- START BUYER LOGIN FORM -->
-        {{if .error}}
-        <div>{{.error }}</div>
-        {{end}}
+
         <div class="buyer-login-form" style="margin-right: auto">
             <form action="/buyers/signup" method="POST">
                 <div class="sign-up">
@@ -51,36 +47,33 @@
                     <button class="submit-btn" type="submit">Sign Up</button>
                 </div>
             </form>
-
         </div>
-        <a href="/sellers/launchproduct">Market Place</a>
-        <a href="/">Welcome Page</a>
         <!-- END SELLER LOGIN FORM -->
-
         <div class="buyer-login-form" style="margin-left: auto">
             <form action="/buyers/login" method="POST">
                 <div class="sign-up">
                     <h1 class="sign-in">Login</h1>
                     <p>Already have an Account?</p>
                 </div>
-                <div class="username">
-                    <input type="text" id="buyerusername" required placeholder="Username">
+                <div class="email">
+                    <input type="text" name="email" id="buyerusername" required placeholder="Email">
                 </div>
                 <div class="password">
-                    <input type="password" id="buyerpassword" required placeholder="Password">
+                    <input type="password" name="password" id="buyerpassword" required placeholder="Password">
                 </div>
                 <div class="btn-div">
                     <button class="submit-btn" type="submit">Login</button>
                 </div>
+
+                {{if .error}}
+                <div><h3>{{.error }}</h3></div>
+                {{end}}
             </form>
-
         </div>
-
     </div>
 
-
+    <button class="page-btn"><a href="/sellers/launchproduct">Market Place</a></button>
 
 </div>
-
 </body>
 </html>

@@ -5,7 +5,6 @@
 }
 
 body{
-    background-image: url("/templates/static/images/front-view-woman-with-shopping-bag-concept_23-2148674158.webp");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -113,7 +112,7 @@ a{
     background-color: #2eaa12;
     border-style: none;
     cursor: pointer;
-    
+
 }
 
 .submit-btn a{
@@ -126,7 +125,7 @@ a{
 
 .page-btn{
     background-color: #000;
-    
+
     border-style: none;
 }
 
@@ -159,7 +158,7 @@ a{
     margin: auto;
     justify-content: center;
     margin-top: 20px;
-    
+
 }
 
 .child-container{
@@ -178,16 +177,17 @@ a{
 }
 
 .buyer-cart{
-    border: 2px solid #000;
+    border: 2px solid red;
     width: 40vw;
-    height: 100%;
+    height: auto;
+    background-color: #fff;
 }
 
 
 
 .thebutton{
     background-color: #febf04;
-    
+
     width: 20rem;
     height: 3.5rem;
     margin-bottom: 30px;
@@ -219,8 +219,8 @@ a{
     color: white;
 }
 .btn:hover{
-background-color: green;
-color: #000;
+    background-color: green;
+    color: #000;
 }
 
 
@@ -231,3 +231,21 @@ color: #000;
     top: 30%;
     right: 50px;
 }
+
+.cart-details {
+    width: 60%;
+    height: auto;
+    background-color: #fff;
+    color: white;
+}
+
+.buyer-title {
+    color: #000;
+    margin-top: 15rem;
+    margin-right: 60px;
+}
+
+.buyer-gohome {
+    margin: 100px 60px 0 0;
+}
+

@@ -6,22 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Anek+Odia&family=Dancing+Script:wght@500&family=Titillium+Web:wght@200;300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/seller-signup.css">
+    <link rel="icon" href="/static/images/png-transparent-retail-computer-icons-e-commerce-sales-mega-offer-miscellaneous-service-logo.png" type="image/x-icon">
     <title>Next SELLER</title>
 </head>
 <body>
     <div class="container">
         
           <!-- Start body -->
+        {{if .error}}
+        <div>{{.error }}</div>
+        {{end}}
           <div class="shopfront-div">
             <!-- START SELLER LOGIN FORM -->
             <h3>SELLER LOGIN ACCOUNT</h3>
               <div class="seller-login-form">
-                  <form action="" class="form-box">
+                  <form action="/sellers/signin" class="form-box" method="POST">
                     <div class="email">
-                      <input type="text" id="email" required placeholder="Email">
+                      <input type="text" name="email" id="email" required placeholder="Email">
                   </div>
                   <div class="password">
-                    <input type="password" id="password" required placeholder="Password">
+                    <input type="password" name="password" id="password" required placeholder="Password">
                 </div>
                 <div class="btn-div">
                   <button class="continue-btn">GO TO PAGE</button>
@@ -33,7 +37,7 @@
 
               <!-- <p>NEW CUSTOMER GETS 10% DISCOUNT</p> -->
               <div class="button-div">
-                <button class="page-btn"><a href="/marketplace">Market Place</a></button>
+                <button class="page-btn"><a href="/sellers/launchproduct">Market Place</a></button>
                 <button class="page-btn"><a href="/">Home Page</a></button>
               </div>
           </div>
