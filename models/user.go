@@ -19,7 +19,7 @@ type User struct {
 
 type Buyer struct {
 	User
-	UserID  uint //this is the foreignkey
+	UserID  uint `json:"userID"gorm:"foreignkey"`
 	BuyerID uint `json:"buyerID" gorm:"primarykey, autoincrement"`
 }
 type Seller struct {

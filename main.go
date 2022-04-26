@@ -22,6 +22,7 @@ func main() {
 		log.Fatal(er)
 	}
 
+	defer db.Close()
 	//delay database shutdown
 
 	//seller's in-memory data

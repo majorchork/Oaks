@@ -11,7 +11,7 @@ import (
 )
 
 //DECLARE A VARIABLE THAT CONNECTS WITH DB
-var DBClient *gorm.DB
+//var DBClient *gorm.DB
 
 //FUNCTION TO OPEN AND MIGRATE
 func OpenAndMigrateDb() (*gorm.DB, error) {
@@ -22,16 +22,16 @@ func OpenAndMigrateDb() (*gorm.DB, error) {
 	var dbname = os.Getenv("DB_NAME")
 
 	//open Database and connect using user details
-	db, err := gorm.Open("mysql", username+":"+password+"@tcp(127.0.0.1:3306)/"+dbname+"?charset=utf8mb4&parseTime=True&loc=Local")
+	DBClient, err := gorm.Open("mysql", username+":"+password+"@tcp(127.0.0.1:3306)/"+dbname+"?charset=utf8mb4&parseTime=True&loc=Local")
 	//error handling
 	if err != nil {
 		log.Println("checking database error", err)
 	}
 
-	DBClient = db
+	//DBClient = db
 
 	//calling the automigrate function
-	AutoMigrate(db)
+	AutoMigrate(DBClient)
 
 	return DBClient, nil
 
@@ -42,7 +42,6 @@ func AutoMigrate(db *gorm.DB) {
 
 	err := db.AutoMigrate(&models.User{},
 		&models.Buyer{},
-		&models.Order{},
 		&models.Product{},
 		&models.Status{},
 		&models.Seller{},
@@ -55,6 +54,10 @@ func AutoMigrate(db *gorm.DB) {
 //FUNCTION TO CHECK THE DB & FIND USERS BY THEIR EMAIL ADDRESS
 func FindUserByEmail(email string) (*models.User, error) {
 	user := &models.User{}
+	DBClient, er := OpenAndMigrateDb()
+	if er != nil {
+		log.Println(er)
+	}
 	var err = DBClient.Where("email = ?", email).First(user).Error
 	if err != nil {
 		return nil, err
@@ -62,20 +65,22 @@ func FindUserByEmail(email string) (*models.User, error) {
 	return user, nil
 }
 
-//FUNCTION TO FIND USER ID BY EMAIL
-func FindUserIdByEmail(email string) (uint, error) {
-	user := &models.User{}
-	var err = DBClient.Where("email = ?", email).First(user).Error
-	log.Println("second line")
-	if err != nil {
-		return 0, err
-	}
-	return user.ID, nil
-}
+////FUNCTION TO FIND USER ID BY EMAIL
+//func FindUserIdByEmail(email string) (uint, error) {
+//	user := &models.User{}
+//	DBClient, _ := OpenAndMigrateDb()
+//	var err = DBClient.Where("email = ?", email).First(user).Error
+//	log.Println("second line")
+//	if err != nil {
+//		return 0, err
+//	}
+//	return user.ID, nil
+//}
 
 //FUNCTION TO FIND SELLER BY EMAIL
 func FindSellerByEmail(email string) (*models.Seller, error) {
 	seller := &models.Seller{}
+	DBClient, _ := OpenAndMigrateDb()
 	// querying the db for seller by email
 	var err = DBClient.Where("email = ?", email).First(seller).Error
 	if err != nil {
@@ -86,6 +91,7 @@ func FindSellerByEmail(email string) (*models.Seller, error) {
 
 //FUNCTION TO CREATE NEW USER
 func CreateNewUser(user *models.User) error {
+	DBClient, _ := OpenAndMigrateDb()
 	err := DBClient.Create(user).Error
 	return err
 }

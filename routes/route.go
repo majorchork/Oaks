@@ -20,65 +20,64 @@ func CallRoutes(port string, db *gorm.DB) {
 	//serve the static files
 	router.StaticFS("static", http.Dir("./templates/static"))
 
-	//sever all the HTML template quickly as soon as the pages load
+	//server all the HTML template quickly as soon as the pages load
 	router.LoadHTMLGlob("templates/*.html")
 
-	//Welcome page router
-	router.GET("/", handlers.Welcomepage)
-
-	//Market place router
-	router.GET("/marketplace", handlers.MarketPlace)
-
-	//buyer page router
-	router.GET("/addtocart", handlers.AddToCart)
-
-	//Buyer SignUp router
-	router.GET("/buyerssignup", handlers.BuyerSignUp)
-
-	//Seller Edit Product
-	router.GET("/sellers/editPost/:id", handlers.SellerEditProduct)
-
-	//Seller Update Product
-	router.POST("/update-product/:id", handlers.SellerUpdateProduct)
-
-	//Admin Post Product
-	router.POST("/sellers/addproducts", handlers.AdminPostProduct)
-
-	//Admin Get Product
-	router.GET("/sellers/addproductspage", handlers.AdminGetProduct)
-
-	//Admin Delete Product
-	router.GET("/sellers/deleteproduct/:id", handlers.AdminDeleteProduct)
-
-	//Admin Launch Product to Market Place
-	router.POST("/seller/postproduct", handlers.AdminPostInMarket)
-	router.GET("/sellers/launchproduct", handlers.AdminLaunchProduct)
-
-	//SIGN UP AND LOGIN
-	//seller signin router
-	router.GET("/sellersignup", handlers.SellerLogin)
-
-	//Seller page router
-	router.GET("/sellerpage", handlers.SellerPage)
-
+	// CREATE END POINTS
 	//Seller Login
-	router.POST("/sellers/signin", handlers.SellerLoginHandler)
-
+	router.POST("/seller/signin", handlers.SellerLoginHandler) //
 	//Buyer Sig-up
-	router.POST("/buyers/signup", handlers.BuyerSignUpHandler)
+	router.POST("/buyer/signup", handlers.BuyerSignUpHandler) //
 	//Buyer Login-in
-	router.POST("/buyers/login", handlers.LoginHandler)
+	router.POST("/buyer/login", handlers.LoginHandler) //
+	//buyer page router
+	router.GET("/buyer/addproducttocart/:id", handlers.AddToCartHandler) //
+	//Admin Post Product
+	router.POST("/seller/addproducts", handlers.AdminPostProductHandler) //
+	//Admin Launch Product to Market Place
+	router.POST("/seller/postproduct", handlers.AdminPostInMarketHandler) //
 
+	// RETRIEVE END POINTS
+	//Welcome page router
+	router.GET("/", handlers.WelcomepageHandler) //
+	//Market place router
+	router.GET("/seller/marketplace", handlers.MarketPlaceHandler) //
+	//Account Details
+	router.GET("/buyer/paymentdetail", handlers.PaymentHandler) //
+	//Router To Render Buyer SignUp Page
+	router.GET("/buyer/signup", handlers.BuyerSignUpPageHandler) //
+	//Seller Edit Product
+	router.GET("/seller/editPost/:id", handlers.SellerEditProductHandler) //
+	//Buyer Page
+	router.GET("/buyer/cartpage", handlers.BuyerPageHandler)
+	//Admin Get Product
+	router.GET("/seller/addproductspage", handlers.AdminGetProductHandler)  //
+	router.GET("/seller/launchproduct", handlers.AdminLaunchProductHandler) //
+	//SIGN UP AND LOGIN
+	router.GET("/seller/signup", handlers.SellerLoginPageHandler)
+	//Seller page router
+	router.GET("/sellerpage", handlers.SellerPageHandler)
 	//To search for product
-	router.GET("/searchproduct", handlers.SearchProduct)
+	router.GET("/buyer/searchproduct", handlers.SearchProduct)
+	//Adminstrator's Dashboard
+	router.GET("/seller/dashboard", handlers.AdminDashBoard)
 
-	//Admin get notified once a buyer makes an order
-	router.POST("/orderpage", handlers.PayNow)
+	// UPDATE END POINTS
+	//Seller Update Product
+	router.POST("/seller/update-product/:id", handlers.SellerUpdateProductHandler)
+
+	// DELETE END POINTS
+	//Admin Delete Product
+	router.GET("/seller/deleteproduct/:id", handlers.AdminDeleteProductHandler)
+	//Buyer Page
+	router.GET("/buyer/removeproduct/:id", handlers.RemoveProductFromCartHandler)
+	// logOut LogoutUser
+	router.GET("/logout", handlers.LogoutUserHandler)
 
 	//start and run the server on port 8084
 	port = ":" + os.Getenv("PORT")
 	if port == ":" {
-		port = ":8084"
+		port = ":8094"
 	}
 	router.Run(port)
 }

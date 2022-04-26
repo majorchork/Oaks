@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/seller-signup.css">
+    <link rel="icon" href="/static/images/download.png" type="image/x-icon">
     <title>SELLER PAGE</title>
 </head>
 <body>
@@ -12,7 +13,7 @@
 <div class="container-seller">
     <div class="seller-form">
         <h2>SELLER EDIT AND UPDATE PRODUCT</h2>
-        <form action="/update-product/{{.data.ID}}" method="POST">
+        <form action="/seller/update-product/{{.data.ID}}" method="POST">
             <div> <input type="url" name="product_img" value="{{.data.Productimg}}" placeholder="Product Image Link"></div>
             <div><input type="text" name="product_Name" value="{{ .data.Name}}" placeholder="Product Name"></div>
             <div><input type="text" name="product_price" value="{{ .data.Price}}" placeholder="Product Price"></div>
@@ -29,7 +30,7 @@
         </form>
     </div>
     <div class="button-div">
-        <button class="page-btn"><a href="/sellers/launchproduct">Market Place</a></button>
+        <button class="page-btn"><a href="/seller/launchproduct">Market Place</a></button>
         <button class="page-btn"><a href="/">Home Page</a></button>
     </div>
 </div>

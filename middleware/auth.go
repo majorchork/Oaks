@@ -6,12 +6,14 @@ import (
 	"net/http"
 )
 
-func Authentication(c *gin.Context) *http.Cookie {
-	email, err := c.Request.Cookie("email")
+func Authentication(c *gin.Context) bool {
+	_, err := c.Request.Cookie("seasalt")
+	log.Println("outb")
 	if err != nil {
+		log.Println("outback")
 		log.Println(err)
 		c.Redirect(http.StatusPermanentRedirect, "/sellersignup")
-		return nil
+		return false
 	}
-	return email
+	return true
 }

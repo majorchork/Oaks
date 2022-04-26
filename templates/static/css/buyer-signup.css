@@ -10,7 +10,6 @@ body{
     background-size: cover;
     background-position: right top;
     background-color: antiquewhite;
-    font-family: 'Anek Odia', sans-serif;
     font-family: 'Titillium Web', sans-serif;
 }
 
@@ -125,13 +124,12 @@ a{
 
 .page-btn{
     background-color: #000;
-
     border-style: none;
 }
 
-.page-btn:hover {
-    background-color: #555454;
-}
+/*.page-btn:hover {*/
+/*    background-color: #555454;*/
+/*}*/
 .page-btn a {
     color: #FFF;
 }
@@ -153,7 +151,6 @@ a{
 .container-buyer{
     background-color: #fff;
     width: 95vw;
-    height: 95vh;
     display: flex;
     margin: auto;
     justify-content: center;
@@ -187,17 +184,11 @@ a{
 
 .thebutton{
     background-color: #febf04;
-
-    width: 20rem;
     height: 3.5rem;
     margin-bottom: 30px;
     position: relative;
-
-    margin: auto;
-    width: 60%;
+    width: 70%;
     border: 10px solid #FFF;
-    padding: 20px;
-
     text-align: center;
     padding: 10px 10px;
 }
@@ -234,7 +225,7 @@ a{
 
 .cart-details {
     width: 60%;
-    height: auto;
+    height: 100vh;
     background-color: #fff;
     color: white;
 }

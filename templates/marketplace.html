@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Anek+Odia&family=Dancing+Script:wght@200&family=Exo+2:ital,wght@0,100;0,300;0,500;0,600;0,800;1,900&family=Titillium+Web:wght@200;300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/marketplace.css">
-    <link rel="icon" href="/static/images/png-transparent-retail-computer-icons-e-commerce-sales-mega-offer-miscellaneous-service-logo.png" type="image/x-icon">
+    <link rel="icon" href="/static/images/download.png" type="image/x-icon">
     <title>NEXT-STORE</title>
 </head>
 <body>
@@ -16,12 +16,15 @@
 
     <nav class="zone sticky topnav">
         <ul class="main-nav">
-
-            <li><a href="/sellersignup" class="seller-sign-in">Sign In</a> </li>
-            <li><a href="/buyerssignup" class="buyer-sign-in">Sign up</a></li>
-
-<!--            &lt;!&ndash;I WILL REMOVE THIS ONCE THE SELLER CAN POST A PRODUCT&ndash;&gt;-->
-            <li><a href="/sellerpage" class="buyer-sign-in">Seller Page</a></li>
+            {{if .check}}
+            <div>
+                <li><a href="/seller/signup" class="seller-sign-in">Admin</a> </li><li><a href="/buyer/signup" class="buyer-sign-in">LogOut</a></li>
+                <li><a href="/buyer/signup" class="buyer-sign-in">LogOut</a></li>
+            </div>
+                {{else}}
+            <li><a href="/buyer/signup" class="buyer-sign-in">Sign up</a></li>
+                {{end}}
+<!--            <li><a href="/seller/dashboard" class="buyer-sign-in">Admin Dashboard</a></li>-->
 
             <li><input type="text" class="search" placeholder="Search Product...."><i class="fa fa-search"> <a href="/searchproduct"></a> </i></li>
             <div><h1 class="logo"><a href="/" style="background-color: rgb(221,169,26); color: #000;">N E X T - S T O R E</a></h1></div><h1 class="logo"></h1>
@@ -41,15 +44,16 @@
 <div class="zone">
 
     <!--        PRODUCT TEMPLATE START-->
-    <div style="display: grid; grid-template-columns: 50% 50%;">
+    <div style="display: grid; grid-template-columns: 25% 25% 25% 25%;">
         {{range $ind, $val := .data}}
-        <div class="box zone" style="border: 1px solid black">
-            <h2 class="price">Product Name:{{ $val.Name}}</h2>
-            <h3 class="price">Price :N{{ $val.Price}}</h3>
+        <div class="box zone" style="border: 1px solid black;">
+            <h1 class="price">{{ $val.Name}}</h1>
+            <h3 class="price">₦{{ $val.Price}}</h3>
             <p class="price">Quantity Left: {{ $val.Quantity }}</p>
             <p class="price">Category :{{ $val.Productcategory}}</p>
             <img src="{{ $val.Productimg}}">
-            <a class="price" href="/addtocart?id={{ .ID }}" style="text-decoration: none; background-color: #2eaa12; padding: 10px">BUY NOW!</a>
+<!--            <a class="price" href="/addtocart?id={{ .ID }}" style="text-decoration: none; background-color: #2eaa12; padding: 10px">BUY NOW!</a>-->
+            <a onclick="AlertFunction()" class="price" href="/buyer/addproducttocart/{{.ID}}" style="text-decoration: none; background-color: #2eaa12; color: #fff; padding: 10px">BUY NOW!</a>
 
         </div>
     {{end}}
@@ -67,12 +71,19 @@
 
 
 
-<footer class="zone yellow footer"><p>&copy copyright 2022 TEAM B GOLAND SQUARD 10 STACK</p></footer>
+<footer class="zone yellow footer"><p>&copy copyright 2022 TEAM B GOLAND SQUAD 10 STACK</p></footer>
 </div>
+</div>
+<!--Script start-->
+<script>
+    function AlertFunction() {
+        alert("Add Product ? 📦");
+    }
+</script>
+<!--Script End-->
 
 </body>
 </html>
 
 
 
-</div>
