@@ -13,14 +13,9 @@ type Cart struct {
 	Quantity   int    `json:"quantity"gorm:"quantity"`
 	Image      string `json:"image" gorm:"image"`
 	ProductID  uint   `json:"productID" gorm:"productID"`
-	Buyer      Buyer  `json:"buyer"gorm:"buyer""`
+	Buyer      Buyer  `json:"buyer"gorm:"buyer"`
 	BuyerID    uint   `json:"buyerID" gorm:"buyerID"`
 	TotalPrice int    `json:"totalPrice"gorm:"totalPrice"`
 }
 
-func (cart *Cart) GetTotalPrice() {
-	//1. get the value in int of each product
-	//2. append every price based on the product into a slice
-	//3. loop through the slice and get the big sum
 
-}

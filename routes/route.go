@@ -26,9 +26,9 @@ func CallRoutes(port string, db *gorm.DB) {
 	// CREATE END POINTS
 	//Seller Login
 	router.POST("/seller/signin", handlers.SellerLoginHandler) //
-	//Buyer Sig-up
+	//Buyer Sign-up
 	router.POST("/buyer/signup", handlers.BuyerSignUpHandler) //
-	//Buyer Login-in
+	//Buyer Login
 	router.POST("/buyer/login", handlers.LoginHandler) //
 	//buyer page router
 	router.GET("/buyer/addproducttocart/:id", handlers.AddToCartHandler) //
@@ -71,7 +71,7 @@ func CallRoutes(port string, db *gorm.DB) {
 	router.GET("/seller/deleteproduct/:id", handlers.AdminDeleteProductHandler)
 	//Buyer Page
 	router.GET("/buyer/removeproduct/:id", handlers.RemoveProductFromCartHandler)
-	// logOut LogoutUser
+	// logOut Logout User
 	router.GET("/logout", handlers.LogoutUserHandler)
 
 	//start and run the server on port 8084
