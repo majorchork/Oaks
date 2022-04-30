@@ -1,6 +1,6 @@
 module github.com/decadevs/next_store
 
-go 1.18
+go 1.17
 
 require (
 	github.com/anjolabassey/Rave-go v0.0.0-20220227000759-c0b94887bf0b
