@@ -11,7 +11,7 @@ import (
 )
 
 //DECLARE A VARIABLE THAT CONNECTS WITH DB
-//var DBClient *gorm.DB
+
 
 //FUNCTION TO OPEN AND MIGRATE
 func OpenAndMigrateDb() (*gorm.DB, error) {
@@ -65,17 +65,7 @@ func FindUserByEmail(email string) (*models.User, error) {
 	return user, nil
 }
 
-////FUNCTION TO FIND USER ID BY EMAIL
-//func FindUserIdByEmail(email string) (uint, error) {
-//	user := &models.User{}
-//	DBClient, _ := OpenAndMigrateDb()
-//	var err = DBClient.Where("email = ?", email).First(user).Error
-//	log.Println("second line")
-//	if err != nil {
-//		return 0, err
-//	}
-//	return user.ID, nil
-//}
+
 
 //FUNCTION TO FIND SELLER BY EMAIL
 func FindSellerByEmail(email string) (*models.Seller, error) {
